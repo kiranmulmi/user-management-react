@@ -21,7 +21,7 @@
 
 .main-body {
   float: right;
-  background-color: #b5b2b2;
+  background-color: #fbfbfb;
   width: 70%;
   padding: 2.5%;
   height: 80vh;
@@ -45,4 +45,26 @@
   background-color: #4d4d4d;
   margin-bottom: 5px;
   color: #ffffff;
+}
+
+.sidebar-nav li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+table {
+  margin-top: 20px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
