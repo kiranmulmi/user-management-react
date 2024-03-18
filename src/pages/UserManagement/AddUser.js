@@ -1,14 +1,33 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [age, setAge] = useState('');
+  const [city, setCity] = useState('');
   
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   }
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  }
+
+  const handleAgeChange = (event) => {
+    setAge(event.target.value);
+  }
+
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  }
   const saveForm = () => {
-    console.log('save form');
-    console.log('username: ', username);
+    console.log('Username:', username);
+    console.log('Email:', email);
+    console.log('Age:', age);
+    console.log('City:', city);
+    navigate('/user-management');
   }
   return (
     <div>
@@ -22,10 +41,18 @@ const AddUser = () => {
       </div>
       <div>
         <label>Email</label>
-        <input type="text" />
+        <input type="text" value={email} onChange={handleEmailChange}/>
       </div>
       <div>
-        <button onClick={saveForm}>Save</button>
+        <label>Age</label>
+        <input type="text" value={age} onChange={handleAgeChange} />
+      </div>
+      <div>
+        <label>City</label>
+        <input type="text" value={city} onChange={handleCityChange} />
+      </div>
+      <div>
+        <button onClick={saveForm} className="btn">Save</button>
       </div>
     </div>
   );

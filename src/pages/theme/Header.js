@@ -1,6 +1,6 @@
 const Header  = () => {
   return (
-    <div class="header">
+    <div className="header">
       <h2>Header</h2>
     </div>
   );

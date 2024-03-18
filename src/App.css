@@ -65,6 +65,25 @@ td, th {
   padding: 8px;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background-color: #dddddd;
+} */
+
+.btn {
+  display: inline-block;
+  background: #84a4f1;
+  padding: 10px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 5px;
+  margin: 5px;
+  border: none;
+}
+
+.btn-danger {
+  background: red;
+}
+
+.pull-right {
+  float: right;
 }

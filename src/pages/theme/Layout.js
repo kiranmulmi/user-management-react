@@ -7,11 +7,11 @@ const Layout = () => {
   return (
     <div>
       <Header />
-      <div class="row">
-        <div class="sidebar">
+      <div className="row">
+        <div className="sidebar">
           <Sidebar />
         </div>
-        <div class="main-body">
+        <div className="main-body">
           <Outlet />
         </div>
       </div>
