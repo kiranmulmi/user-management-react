@@ -56,7 +56,7 @@ const UserManagement = () => {
                     <td>{row.age}</td>
                     <td>{row.city}</td>
                     <td>
-                      <Link to={`/user-management/detail/${row.id}`} className="btn">Detail</Link>
+                      <Link to={`/user-management/detail/${row.id}`} className="btn btn-default">Detail</Link>
                       <Link to={`/user-management/edit/${row.id}`} className="btn">Edit</Link>
                       <Link to={`/user-management/delete/${row.id}`} className="btn btn-danger">Delete</Link>
                     </td>
