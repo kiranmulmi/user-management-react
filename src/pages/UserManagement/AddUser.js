@@ -26,6 +26,8 @@ const AddUser = () => {
     if(user.username === '') {
       err.username = 'Username is required';
       isValid = false
+    } else {
+      err.username = '';
     }
     if(user.email === '') {
       err.email = 'Email is required';
@@ -33,15 +35,21 @@ const AddUser = () => {
     } else if(!validateEmail(user.email)) {
       err.email = 'Email is not valid';
       isValid = false
+    } else {
+      err.email = '';
     }
 
     if(user.age === '') {
       err.age = 'Age is required';
       isValid = false
+    }else {
+      err.age = '';
     }
     if(user.city === '') {
       err.city = 'City is required';
       isValid = false
+    } else {
+      err.city = '';
     }
     setErrMsg(err);
     return isValid;
@@ -52,7 +60,7 @@ const AddUser = () => {
   }
 
   const saveForm = () => {
-    console.log(errorMsg);
+    console.log("error message", errorMsg);
     setIsSubmitted(true);
     console.log('User:', user);
     if (validateForm()) {
@@ -67,7 +75,6 @@ const AddUser = () => {
         name="username"
         value={user.username}
         handleInputChange={handleInputChange}
-        isSubmitted={isSubmitted}
         errMessage={errorMsg.username}/>
 
       <ViTextInput 
@@ -75,7 +82,6 @@ const AddUser = () => {
         name="email"
         value={user.email}
         handleInputChange={handleInputChange}
-        isSubmitted={isSubmitted}
         errMessage={errorMsg.email}/>
 
       <ViTextInput 
@@ -83,7 +89,6 @@ const AddUser = () => {
         name="age"
         value={user.age}
         handleInputChange={handleInputChange}
-        isSubmitted={isSubmitted}
         errMessage={errorMsg.age}/>
 
       <ViTextInput 
@@ -91,8 +96,7 @@ const AddUser = () => {
         name="city"
         value={user.city}
         handleInputChange={handleInputChange}
-        isSubmitted={isSubmitted}
-        errMessag={errorMsg.city}/>
+        errMessage={errorMsg.city}/>
       
       <div className="form-group">
         <button onClick={saveForm} className="btn">Save</button>

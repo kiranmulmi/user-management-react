@@ -9,8 +9,7 @@ const ViTextInput = (props) => {
           value={props.value} 
           {...props}
           />
-          { props.isSubmitted && props.value === '' &&
-          <span className="label-danger">{props.errMessage}</span>}
+          { props.errMessage !== '' && <span className="label-danger">{props.errMessage}</span>}
       </div>
   );
 }
