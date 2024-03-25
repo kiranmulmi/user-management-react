@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ViTextInput from "../../components/ViTextInput";
+import { validateEmail } from "../../utils/common";
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -12,20 +13,37 @@ const AddUser = () => {
     city: "",
   });
 
+  const [errorMsg, setErrMsg] = useState({
+    username: "",
+    email: "",
+    age: "",
+    city: "",
+  });
+
   const validateForm = () => {
     let isValid = true;
+    const err = {...errorMsg};
     if(user.username === '') {
+      err.username = 'Username is required';
       isValid = false
     }
     if(user.email === '') {
+      err.email = 'Email is required';
+      isValid = false
+    } else if(!validateEmail(user.email)) {
+      err.email = 'Email is not valid';
       isValid = false
     }
+
     if(user.age === '') {
+      err.age = 'Age is required';
       isValid = false
     }
     if(user.city === '') {
+      err.city = 'City is required';
       isValid = false
     }
+    setErrMsg(err);
     return isValid;
   }
   
@@ -34,6 +52,7 @@ const AddUser = () => {
   }
 
   const saveForm = () => {
+    console.log(errorMsg);
     setIsSubmitted(true);
     console.log('User:', user);
     if (validateForm()) {
@@ -49,7 +68,7 @@ const AddUser = () => {
         value={user.username}
         handleInputChange={handleInputChange}
         isSubmitted={isSubmitted}
-        errMessage="Username is required"/>
+        errMessage={errorMsg.username}/>
 
       <ViTextInput 
         title="Email"
@@ -57,7 +76,7 @@ const AddUser = () => {
         value={user.email}
         handleInputChange={handleInputChange}
         isSubmitted={isSubmitted}
-        errMessage="Email is required"/>
+        errMessage={errorMsg.email}/>
 
       <ViTextInput 
         title="Age"
@@ -65,7 +84,7 @@ const AddUser = () => {
         value={user.age}
         handleInputChange={handleInputChange}
         isSubmitted={isSubmitted}
-        errMessage="Age is required"/>
+        errMessage={errorMsg.age}/>
 
       <ViTextInput 
         title="City"
@@ -73,7 +92,7 @@ const AddUser = () => {
         value={user.city}
         handleInputChange={handleInputChange}
         isSubmitted={isSubmitted}
-        errMessage="City is required"/>
+        errMessag={errorMsg.city}/>
       
       <div className="form-group">
         <button onClick={saveForm} className="btn">Save</button>
