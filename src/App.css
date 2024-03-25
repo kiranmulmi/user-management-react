@@ -118,4 +118,12 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #45a049;
 }
+
+.form-group {
+  margin-top: 10px;
+}
+
+.label-danger {
+  color: rgb(229, 38, 38);
+}
 /* form css ends */
