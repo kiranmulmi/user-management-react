@@ -16,7 +16,7 @@
   width: 20%;
   color: #ffffff;
   padding: 2.5%;
-  height: 80vh;
+  min-height: 80vh;
 }
 
 .main-body {
@@ -24,7 +24,7 @@
   background-color: #fbfbfb;
   width: 70%;
   padding: 2.5%;
-  height: 80vh;
+  min-height: 80vh;
 }
 
 .footer {

@@ -5,19 +5,19 @@ const UserManagement = () => {
   const header = [
     {
       key: "username",
-      name: "Username",
+      label: "Username",
     },
     {
       key: "email",
-      name: "Email",
+      label: "Email",
     },
     {
       key: "age",
-      name: "Age",
+      label: "Age",
     },
     {
       key: "city",
-      name: "City",
+      label: "City",
     }
   ]
   const data = [
@@ -55,8 +55,54 @@ const UserManagement = () => {
       <h1>User Management</h1>
       <Link to="/user-management/add" className="btn pull-right">Add Uer</Link>
       <ViTable 
-        users={users}
+        data={users}
         header={header}
+        actions={[
+          {
+            name: "Detail",
+            link: "/user-management/detail",
+            className: "btn btn-default"
+          },
+          {
+            name: "Edit",
+            link: "/user-management/edit",
+            className: "btn"
+          },
+          {
+            name: "Delete",
+            link: "/user-management/delete",
+            className: "btn btn-danger"
+          }
+        ]}
+      />
+    
+      <h1>Banks</h1>
+      <ViTable 
+        data={[
+          {
+            "name": "Everest",
+            "branch": "Baneshwor"
+          },
+          {
+            "name": "Sanima",
+            "branch": "Bouddha"
+          },
+          {
+            "name": "Siddhartha",
+            "branch": "Patan"
+          }
+        ]}
+
+        header={[
+          {
+            "key": "name",
+            "label": "Name",
+          },
+          {
+            "key": "branch",
+            "label": "Branch"
+          }
+        ]}
       />
     </div>
   );

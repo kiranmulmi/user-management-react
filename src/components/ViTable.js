@@ -7,32 +7,44 @@ const ViTable = (props) => {
             { props.header.length > 0 &&
               props.header.map((row, index) => {
                 return (
-                  <th key={index}>{row.name}</th>
+                  <th key={index}>{row.label}</th>
                 )
               })
             }
-            <th>Action</th>
+            { props.actions && props.actions.length > 0 && <th>Action</th>}
           </tr>
         </thead>
         <tbody>
-          { props.users.length > 0 && 
-              props.users.map((row, index) => {
+          { props.data.length > 0 && 
+              props.data.map((row, index) => {
                 return (
                   <tr key={index}>
-                    <td>{row.username}</td>
-                    <td>{row.email}</td>
-                    <td>{row.age}</td>
-                    <td>{row.city}</td>
-                    <td>
-                      <Link to={`/user-management/detail/${row.id}`} className="btn btn-default">Detail</Link>
-                      <Link to={`/user-management/edit/${row.id}`} className="btn">Edit</Link>
-                      <Link to={`/user-management/delete/${row.id}`} className="btn btn-danger">Delete</Link>
-                    </td>
+                    {/* body starts */}
+                    { props.header.map((header, index) => {
+                      return (
+                        <td key={index}>{row[header.key]}</td>
+                      )
+                    })}
+                    {/* body ends */}
+
+                    {/* action starts */}
+                    { props.actions && props.actions.length > 0 &&
+                      <td>
+                        {
+                          props.actions.map((action, index) => {
+                            return (
+                                <Link to={`${action.link}/${row.id}`} className={action.className} key={index}>{action.name}</Link>
+                            )
+                          })
+                        }
+                      </td>
+                    }
+                    {/* action ends */}
                   </tr>
                 )
               })
             }
-          { props.users.length === 0 && 
+          { props.data.length === 0 && 
           <tr>
             <td colSpan={4}>No records found</td>
           </tr>
