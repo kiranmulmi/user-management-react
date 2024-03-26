@@ -75,35 +75,6 @@ const UserManagement = () => {
           }
         ]}
       />
-    
-      <h1>Banks</h1>
-      <ViTable 
-        data={[
-          {
-            "name": "Everest",
-            "branch": "Baneshwor"
-          },
-          {
-            "name": "Sanima",
-            "branch": "Bouddha"
-          },
-          {
-            "name": "Siddhartha",
-            "branch": "Patan"
-          }
-        ]}
-
-        header={[
-          {
-            "key": "name",
-            "label": "Name",
-          },
-          {
-            "key": "branch",
-            "label": "Branch"
-          }
-        ]}
-      />
     </div>
   );
 }

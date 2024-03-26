@@ -6,7 +6,6 @@ import ViPasswordInput from "../../components/ViPasswordInput";
 
 const AddUser = () => {
   const navigate = useNavigate();
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -64,7 +63,6 @@ const AddUser = () => {
 
   const saveForm = () => {
     console.log("error message", errorMsg);
-    setIsSubmitted(true);
     console.log('User:', user);
     if (validateForm()) {
       navigate('/user-management');

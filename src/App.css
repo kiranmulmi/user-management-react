@@ -127,3 +127,10 @@ input[type=submit]:hover {
   color: rgb(229, 38, 38);
 }
 /* form css ends */
+
+.login-form {
+  width: 300px;
+  margin: 100px auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+}

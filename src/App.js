@@ -6,6 +6,7 @@ import AddUser from "./pages/UserManagement/AddUser";
 import Faq from "./pages/Faq";
 import Contact from "./pages/Contact";
 import UserDetail from "./pages/UserManagement/UserDetail";
+import Login from "./pages/Auth/Login";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/faq" element={<Faq/>} />
             <Route path="/contact" element={<Contact/>} />
           </Route>
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
