@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ViTextInput from "../../components/ViTextInput";
 import { validateEmail } from "../../utils/common";
+import ViPasswordInput from "../../components/ViPasswordInput";
 
 const AddUser = () => {
   const navigate = useNavigate();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [user, setUser] = useState({
     username: "",
+    password: "",
     email: "",
     age: "",
     city: "",
@@ -15,6 +17,7 @@ const AddUser = () => {
 
   const [errorMsg, setErrMsg] = useState({
     username: "",
+    password: "",
     email: "",
     age: "",
     city: "",
@@ -76,6 +79,13 @@ const AddUser = () => {
         value={user.username}
         handleInputChange={handleInputChange}
         errMessage={errorMsg.username}/>
+
+      <ViPasswordInput 
+        title="Password"
+        name="password"
+        value={user.password}
+        handleInputChange={handleInputChange}
+        errMessage={errorMsg.password}/>  
 
       <ViTextInput 
         title="Email"
