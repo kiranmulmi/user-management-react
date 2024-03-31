@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ViPasswordInput from "../../components/ViPasswordInput";
 import ViTextInput from "../../components/ViTextInput";
@@ -30,6 +30,14 @@ const Login = () => {
       alert('Login failed');
     }
   }
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem('isLogin');
+    if(isLogin === '1') {
+      navigate('/user-management');
+    }
+  }, []);
+
   return (
     <div className="login-form">
       <h1>User Login</h1>
