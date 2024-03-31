@@ -134,3 +134,9 @@ input[type=submit]:hover {
   border: 1px solid #ccc;
   padding: 20px;
 }
+
+/* flex design */
+.vi-flex-container {
+  display: flex;
+  align-items: stretch;
+}
