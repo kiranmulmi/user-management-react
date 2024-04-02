@@ -3,7 +3,7 @@
   padding:0;
 }
 .header {
-  background-color: grey;
+  background-color: #e4e4e4;
   padding: 20px;
   color: #ffffff;
 }
@@ -139,4 +139,12 @@ input[type=submit]:hover {
 .vi-flex-container {
   display: flex;
   align-items: stretch;
+}
+
+.alert-message {
+  border: 1px solid #ff8f8f;
+  padding: 20px;
+  background: #ffcaca;
+  border-radius: 5px;
+  margin: 10px 0;
 }
