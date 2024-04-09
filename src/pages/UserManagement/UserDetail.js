@@ -1,31 +1,11 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import UserImage from "../../assets/images/user-profile.png";
 
 const UserDetail = () => {
   const { userId } = useParams();
-  const data = [
-    {
-      id: 1,
-      username: 'John',
-      email: 'jon@gmailcom',
-      age: 25,
-      city: 'London'
-    },
-    {
-      id: 2,
-      username: 'Jane',
-      email: 'jane@gmailcom',
-      age: 22,
-      city: 'New York'
-    },
-    {
-      id: 3,
-      username: 'Paul',
-      email: 'paul@gmailcom',
-      age: 30,
-      city: 'Paris'
-    }
-  ];
+
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -34,19 +14,45 @@ const UserDetail = () => {
   });
 
   useEffect(() => {
-    const newUser = data.find((obj) => obj.id.toString() === userId.toString())
-    if(newUser) {
-      setUser(newUser);
-    }
+    axios.get(`http://localhost:4000/users/${userId}`).then((res) => {
+      setUser(res.data);
+    }).catch((err) => {
+      alert("API server error");
+      console.log(err);
+    });
   }, []);
 
   return (
     <div>
-      <h2>User Detail</h2>
-      <div>Username: {user.username}</div>
-      <div>Email: {user.email}</div>
-      <div>Age: {user.age}</div>
-      <div>City: {user.city}</div>
+      <div className="vi-flex-container">
+      <div style={{flexGrow: '10'}}>
+        <img src={UserImage} style={{width: "188px"}}/>
+        <div style={{margin: '20px auto'}}>
+          <button className="btn btn-danger">Connect to LinkedIn</button>
+        </div>
+      </div>
+      <div style={{flexGrow: '40'}}>
+        <h2>User Detail</h2>
+        <div className="v-space"></div>
+        <div>Username</div>
+        <hr/>
+        <div>{user.username}</div>
+
+        <div className="v-space"></div>
+        <div>Email</div>
+        <hr/>
+        <div>{user.email}</div>
+
+        <div className="v-space"></div>
+        <div>Age</div>
+        <hr/>
+        <div>{user.age}</div>
+        <div className="v-space"></div>
+        <div>City</div>
+        <hr/>
+        <div>{user.city}</div>
+      </div>
+      </div>
     </div>
   )
 }

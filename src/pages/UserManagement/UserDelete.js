@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -5,29 +6,7 @@ import { useParams } from "react-router-dom";
 const UserDelete = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
-  const data = [
-    {
-      id: 1,
-      username: 'John',
-      email: 'jon@gmailcom',
-      age: 25,
-      city: 'London'
-    },
-    {
-      id: 2,
-      username: 'Jane',
-      email: 'jane@gmailcom',
-      age: 22,
-      city: 'New York'
-    },
-    {
-      id: 3,
-      username: 'Paul',
-      email: 'paul@gmailcom',
-      age: 30,
-      city: 'Paris'
-    }
-  ];
+
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -36,11 +15,28 @@ const UserDelete = () => {
   });
 
   useEffect(() => {
-    const newUser = data.find((obj) => obj.id.toString() === userId.toString())
-    if(newUser) {
-      setUser(newUser);
-    }
+    axios.get(`http://localhost:4000/users/${userId}`)
+    .then((res) => {
+      setUser(res.data);
+    } ).catch((err) => {  
+      alert("API server error");
+      console.log(err);
+    });
   }, []);
+
+  const deleteUser = () => {
+    const confirm = window.confirm("Are you sure want to delete this user?");
+    if(confirm) {
+      axios.delete(`http://localhost:4000/users/${userId}`)
+      .then((res) => {
+        navigate('/user-management');
+        console.log("Delete user success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    };
+  }
 
   return (
     <div>
@@ -53,10 +49,7 @@ const UserDelete = () => {
         <button 
           type="button" 
           className="btn btn-danger"
-          onClick={() => {
-            navigate('/user-management');
-          }}
-          
+          onClick={deleteUser}
           >Yes</button>
         <button 
           type="button" 
