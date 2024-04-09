@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ViTextInput from "../../components/ViTextInput";
 import { validateEmail } from "../../utils/common";
 import ViPasswordInput from "../../components/ViPasswordInput";
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -62,10 +64,19 @@ const AddUser = () => {
   }
 
   const saveForm = () => {
-    console.log("error message", errorMsg);
-    console.log('User:', user);
+    const uuid = uuidv4();
+    
     if (validateForm()) {
-      navigate('/user-management');
+      const item = {...user, id: uuid}
+      console.log('User:', item);
+      axios.post('http://localhost:4000/users', item)
+      .then(() => {
+        console.log("user saved");
+        navigate('/user-management');
+      }).catch((err) => {
+        console.log(err);
+        alert("SERVER ERROR");
+      })
     }
   }
   return (
