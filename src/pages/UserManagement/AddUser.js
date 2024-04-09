@@ -5,6 +5,7 @@ import { validateEmail } from "../../utils/common";
 import ViPasswordInput from "../../components/ViPasswordInput";
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -71,6 +72,15 @@ const AddUser = () => {
       console.log('User:', item);
       axios.post('http://localhost:4000/users', item)
       .then(() => {
+        toast.success('User saved', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+          });
         console.log("user saved");
         navigate('/user-management');
       }).catch((err) => {

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const UserDelete = () => {
   const navigate = useNavigate();
@@ -29,6 +30,16 @@ const UserDelete = () => {
     if(confirm) {
       axios.delete(`http://localhost:4000/users/${userId}`)
       .then((res) => {
+        toast.error('Delete user success', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
         navigate('/user-management');
         console.log("Delete user success");
       })

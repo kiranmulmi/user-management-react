@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ViPasswordInput from "../../components/ViPasswordInput";
 import ViTextInput from "../../components/ViTextInput";
 import ViMessage from "../../components/ViMessage";
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -26,6 +27,15 @@ const Login = () => {
     }
 
     if(isLogin) {
+      toast.success('Welcome back', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+        });
       localStorage.setItem('isLogin', '1');
       navigate('/user-management');
     } else {
