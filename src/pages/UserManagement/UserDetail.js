@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserImage from "../../assets/images/user-profile.png";
+import { getUserById } from "../../service/user-management.service";
 
 const UserDetail = () => {
   const { userId } = useParams();
@@ -14,8 +14,8 @@ const UserDetail = () => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/users/${userId}`).then((res) => {
-      setUser(res.data);
+    getUserById(userId).then((data) => {
+      setUser(data);
     }).catch((err) => {
       alert("API server error");
       console.log(err);

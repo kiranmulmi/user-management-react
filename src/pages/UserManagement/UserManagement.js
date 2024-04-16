@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ViTable from "../../components/ViTable";
-import axios from "axios";
+import { getAllUsers } from "../../service/user-management.service";
 
 const UserManagement = () => {
   const header = [
@@ -25,10 +25,8 @@ const UserManagement = () => {
 
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    // API INTEGRATION
-    axios
-    .get("http://localhost:4000/users").then((res) => {
-      setUsers(res.data);
+    getAllUsers().then((data) => {
+      setUsers(data);
     }).catch((err) => {
       alert("API server error");
       console.log(err);

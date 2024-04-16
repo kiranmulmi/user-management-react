@@ -5,8 +5,9 @@ import { validateEmail } from "../../utils/common";
 import ViPasswordInput from "../../components/ViPasswordInput";
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { useParams } from "react-router-dom";
+import { showSuccessMessage } from "../../utils/notification";
+import { addUser, getUserById, updateUser } from "../../service/user-management.service";
 
 const AddUser = () => {
   const { userId } = useParams();
@@ -20,18 +21,18 @@ const AddUser = () => {
   });
   useEffect(() => {
     if (userId) {
-      axios.get(`http://localhost:4000/users/${userId}`).then((res) => {
-      setUser({
-        username: res.data.username,
-        password: res.data.password,
-        email: res.data.email,
-        age: res.data.age,
-        city: res.data.city,
+      getUserById(userId).then((data) => {
+        setUser({
+          username: data.username,
+          password: data.password,
+          email: data.email,
+          age: data.age,
+          city: data.city,
+        });
+      }).catch((err) => {
+        alert("API server error");
+        console.log(err);
       });
-    }).catch((err) => {
-      alert("API server error");
-      console.log(err);
-    });
     }
   }, []);
   const [errorMsg, setErrMsg] = useState({
@@ -89,46 +90,30 @@ const AddUser = () => {
       
       if (userId) {
       // UPDATE Case
-        console.log('Updating user:', user);
-        axios.put(`http://127.0.0.1:4000/users/${userId}`, user)
+
+        updateUser(userId, user)
         .then(() => {
-          toast.success('User updated', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "colored",
-            });
+          showSuccessMessage('User saved');
           console.log("user saved");
           navigate('/user-management');
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
           alert("SERVER ERROR");
-        })
+        });
       } else {
         // ADD Case
         const uuid = uuidv4();
         const item = {...user, id: uuid}
         console.log('User:', item);
-        axios.post('http://localhost:4000/users', item)
-        .then(() => {
-          toast.success('User saved', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "colored",
-            });
+        addUser(user).then(() => {
+          showSuccessMessage('User saved');
           console.log("user saved");
           navigate('/user-management');
         }).catch((err) => {
           console.log(err);
           alert("SERVER ERROR");
-        })
+        });
       }
     }
   }

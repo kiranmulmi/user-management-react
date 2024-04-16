@@ -1,18 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import VirinchiLogo from "../../assets/images/virinchi-logo.png";
-import { toast } from 'react-toastify';
+import { showSuccessMessage } from "../../utils/notification";
 const Header  = () => {
   const navigate = useNavigate();
   const logout = () => {
-    toast.success('Logout success', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "colored",
-      });
+    showSuccessMessage('Logout successful');
     localStorage.removeItem('isLogin');
     navigate('/login');
   }
