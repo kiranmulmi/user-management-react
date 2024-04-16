@@ -55,3 +55,24 @@ export const getUserById = (userId) => {
         })
   });
 }
+
+export const searchByUsername = (username) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${BASE_URL}?username=${username}`)
+        .then((res) => {
+          resolve(res.data);
+        }).catch((err) => {
+          reject(err);
+        })
+  });
+}
+export const searchByEmail = (email) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${BASE_URL}?email=${email}`)
+        .then((res) => {
+          resolve(res.data);
+        }).catch((err) => {
+          reject(err);
+        })
+  });
+}
